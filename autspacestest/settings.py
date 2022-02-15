@@ -20,15 +20,14 @@ env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%9z1j!wy*8w(sx_tkh5purvknxu*6hc1o-+*w9^#p_p%nwv6ep'
+SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = ["robintaylor.dev", "localhost", "127.0.0.1",]
 
@@ -85,11 +84,11 @@ WSGI_APPLICATION = 'autspacestest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'autspacestest',
-        'USER': 'badgermind',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': env.str("POSTGRES_DB"),
+        'USER': env.str("POSTGRES_USER"),
+        'PASSWORD': env.str("POSTGRES_PASSWORD"),
+        'HOST': env.str("DJANGO_DATABASE_HOST"),
+        'PORT': env.str("DJANGO_DATABASE_PORT"),
     }
 }
 
@@ -128,11 +127,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
 STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles")) 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 WHITENOISE_MANIFEST_STRICT = False
+
+SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT")
+SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE")
+CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
