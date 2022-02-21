@@ -12,9 +12,9 @@ urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
     path("moderate", ModeratePageView.as_view(), name="moderate"),
     path("mystories", MyStoriesPageView.as_view(), name="mystories"),
-    path("sharestories", ShareStoriesPageView.as_view(), name="sharestories"),
     path("viewstories", ViewStoriesPageView.as_view(), name="viewstories"),
-    path("overview", OverviewPageView.as_view(), name="overview"),
     path("registration", RegistrationPageView.as_view(), name="registration"),
-    path("logout", LogoutPageView.as_view(), name="logout"),
 ]
+#    path("sharestories", ShareStoriesPageView.as_view(), name="sharestories"),
+#    path("logout", LogoutPageView.as_view(), name="logout"),
+#    path("overview", OverviewPageView.as_view(), name="overview"),
