@@ -23,9 +23,9 @@ should be changed to
 should become {% url ‘demo:newslugname’ %}
 
 ### static references (css, js, images) should not have a leading slash
-<link href="{% static '/css/something.css' %}" rel="stylesheet">
+{% static '/css/something.css' %}
 should become
-<link href="{% static 'css/something.css' %}" rel="stylesheet">
+{% static 'css/something.css' %}
 This appears to apply to html comments as well
 
 ## running locally under OSX
